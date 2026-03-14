@@ -3,55 +3,69 @@ from flask import Flask, render_template_string
 app = Flask(__name__)
 
 html = """
+
 <!DOCTYPE html>
 <html>
 <head>
-<title>Sorry Princess</title>
+<title>For My Princess</title>
 
 <style>
 
 body{
-background:#0f172a;
+margin:0;
+height:100vh;
+background:linear-gradient(135deg,#ff4d6d,#ff758f,#ff8fa3);
 display:flex;
 justify-content:center;
 align-items:center;
-height:100vh;
 flex-direction:column;
 font-family:Arial;
+overflow:hidden;
 color:white;
 }
 
 h1{
-font-size:40px;
+font-size:50px;
 margin-bottom:40px;
-color:#ff4d6d;
+text-shadow:0 0 20px rgba(0,0,0,0.3);
 }
 
-.heart{
-font-size:70px;
-margin-bottom:30px;
-}
+/* floating hearts */
 
-.circle{
-position:relative;
-width:250px;
-height:250px;
-animation:spin 10s linear infinite;
-}
-
-.circle span{
+.bg-hearts span{
 position:absolute;
-left:50%;
-top:50%;
-transform-origin:0 120px;
-font-size:26px;
-color:#ff4d6d;
+color:white;
+font-size:20px;
+animation:float 8s linear infinite;
+opacity:0.6;
 }
 
-@keyframes spin{
-100%{
-transform:rotate(360deg);
+@keyframes float{
+0%{transform:translateY(100vh)}
+100%{transform:translateY(-10vh)}
 }
+
+/* heart container */
+
+.heart-container{
+position:relative;
+width:400px;
+height:350px;
+animation:rotate 12s linear infinite;
+}
+
+@keyframes rotate{
+100%{transform:rotate(360deg)}
+}
+
+/* sorry text */
+
+.word{
+position:absolute;
+font-size:18px;
+font-weight:bold;
+color:white;
+text-shadow:0 0 10px rgba(0,0,0,0.4);
 }
 
 </style>
@@ -60,27 +74,48 @@ transform:rotate(360deg);
 
 <body>
 
-<h1>For Princess</h1>
+<h1>For My Princess ❤️</h1>
 
-<div class="heart">❤️</div>
+<div class="heart-container">
 
-<div class="circle">
-<span style="transform:rotate(0deg)">S</span>
-<span style="transform:rotate(45deg)">O</span>
-<span style="transform:rotate(90deg)">R</span>
-<span style="transform:rotate(135deg)">R</span>
-<span style="transform:rotate(180deg)">Y</span>
-<span style="transform:rotate(225deg)">❤️</span>
-<span style="transform:rotate(270deg)">S</span>
-<span style="transform:rotate(315deg)">O</span>
+<span class="word" style="left:190px;top:40px;">SORRY</span>
+<span class="word" style="left:240px;top:60px;">SORRY</span>
+<span class="word" style="left:280px;top:100px;">SORRY</span>
+<span class="word" style="left:300px;top:150px;">SORRY</span>
+<span class="word" style="left:280px;top:200px;">SORRY</span>
+<span class="word" style="left:240px;top:240px;">SORRY</span>
+<span class="word" style="left:200px;top:270px;">SORRY</span>
+
+<span class="word" style="left:150px;top:240px;">SORRY</span>
+<span class="word" style="left:110px;top:200px;">SORRY</span>
+<span class="word" style="left:90px;top:150px;">SORRY</span>
+<span class="word" style="left:110px;top:100px;">SORRY</span>
+<span class="word" style="left:150px;top:60px;">SORRY</span>
+
+</div>
+
+<div class="bg-hearts">
+<span style="left:5%">❤️</span>
+<span style="left:15%">❤️</span>
+<span style="left:25%">❤️</span>
+<span style="left:35%">❤️</span>
+<span style="left:45%">❤️</span>
+<span style="left:55%">❤️</span>
+<span style="left:65%">❤️</span>
+<span style="left:75%">❤️</span>
+<span style="left:85%">❤️</span>
+<span style="left:95%">❤️</span>
 </div>
 
 </body>
 </html>
+
 """
 
 @app.route("/")
 def home():
     return render_template_string(html)
 
-app.run(debug=True)
+if __name__ == "__main__":
+    app.run(debug=True)
+
